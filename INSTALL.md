@@ -26,33 +26,38 @@ also installs detectron2 with a few simple commands.
 	cd detectron2
 	python3 -m venv env
 	source env/bin/activate
+	pip install --upgrade pip
 	```
 3. Find the pytorch installation that matches your system at [pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/). For instance, if you use Linux with python3.6.9, pip and CUDA 9.2 run:
 	```
 	pip3 install torch==1.3.1+cu92 torchvision==0.4.2+cu92 -f https://download.pytorch.org/whl/torch_stable.html
 	```
-	To find your cuda version, run: `nvcc --version`
-4. Install the remaining requirements by running:
+
+	If you used CUDA, you can [verify if your GPU is recognized](https://stackoverflow.com/questions/48152674/how-to-check-if-pytorch-is-using-the-gpu/53374933) by running:
+	```
+	import torch
+	torch.cuda.is_available() 
+	```
+
+3. Install the remaining requirements by running:
 	```
 	pip install opencv-python
-	pip install wheel
 	pip install -U 'git+https://github.com/facebookresearch/fvcore'
 	pip install cython; pip install 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'
 	```
+
 ### Build Detectron2
 
 After having the above dependencies, run:
 ```
-git clone https://github.com/facebookresearch/detectron2.git
-cd detectron2
 python setup.py build develop
-
-# or if you are on macOS
-# MACOSX_DEPLOYMENT_TARGET=10.9 CC=clang CXX=clang++ python setup.py build develop
-
-# or, as an alternative to `setup.py`, do
-# pip install [--editable] .
 ```
+
+If you are on macOS
+```
+MACOSX_DEPLOYMENT_TARGET=10.9 CC=clang CXX=clang++ python setup.py build develop
+```
+
 Note: you may need to rebuild detectron2 after reinstalling a different build of PyTorch.
 
 ### Common Installation Issues
