@@ -16,7 +16,29 @@ also installs detectron2 with a few simple commands.
 - pycocotools: `pip install cython; pip install 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'`
 - GCC >= 4.9
 
-
+### Individual Steps
+1. Fork repo to your local github account and clone it to your machine:
+	```
+	git clone git@github.com:<username>/detectron2.git
+	```
+2. Go into the `detectron2` directory and create and activate a virtual environment:
+	```
+	cd detectron2
+	python3 -m venv env
+	source env/bin/activate
+	```
+3. Find the pytorch installation that matches your system at [pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/). For instance, if you use Linux with python3.6.9, pip and CUDA 9.2 run:
+	```
+	pip3 install torch==1.3.1+cu92 torchvision==0.4.2+cu92 -f https://download.pytorch.org/whl/torch_stable.html
+	```
+	To find your cuda version, run: `nvcc --version`
+4. Install the remaining requirements by running:
+	```
+	pip install opencv-python
+	pip install wheel
+	pip install -U 'git+https://github.com/facebookresearch/fvcore'
+	pip install cython; pip install 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'
+	```
 ### Build Detectron2
 
 After having the above dependencies, run:
