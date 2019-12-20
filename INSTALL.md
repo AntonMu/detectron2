@@ -33,10 +33,16 @@ also installs detectron2 with a few simple commands.
 	pip3 install torch==1.3.1+cu92 torchvision==0.4.2+cu92 -f https://download.pytorch.org/whl/torch_stable.html
 	```
 
+	```
+	pip3 install torch torchvision
+	```
+
 	If you used CUDA, you can [verify if your GPU is recognized](https://stackoverflow.com/questions/48152674/how-to-check-if-pytorch-is-using-the-gpu/53374933) by running:
 	```
+	python
 	import torch
 	torch.cuda.is_available() 
+	torch.version.cuda
 	```
 
 3. Install the remaining requirements by running:

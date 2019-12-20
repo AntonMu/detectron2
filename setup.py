@@ -29,7 +29,13 @@ def get_extensions():
     extra_compile_args = {"cxx": []}
     define_macros = []
 
-    if (torch.cuda.is_available() and CUDA_HOME is not None) or os.getenv("FORCE_CUDA", "0") == "1":
+    print("torch.cuda.is_available()", torch.cuda.is_available())
+    print("CUDA_HOME", CUDA_HOME)
+    print('os.getenv("FORCE_CUDA", "0")', os.getenv("FORCE_CUDA", "0"))
+    if (torch.cuda.is_available() and CUDA_HOME is not None) or os.getenv(
+        "FORCE_CUDA", "0"
+    ) == "1":
+        print("Doing it with CUDA xxxxxxxxxxxxxxxxxxxx ")
         extension = CUDAExtension
         sources += source_cuda
         define_macros += [("WITH_CUDA", None)]
@@ -67,9 +73,14 @@ def get_model_zoo_configs() -> List[str]:
     """
 
     # Use absolute paths while symlinking.
-    source_configs_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), "configs")
+    source_configs_dir = os.path.join(
+        os.path.dirname(os.path.realpath(__file__)), "configs"
+    )
     destination = os.path.join(
-        os.path.dirname(os.path.realpath(__file__)), "detectron2", "model_zoo", "configs"
+        os.path.dirname(os.path.realpath(__file__)),
+        "detectron2",
+        "model_zoo",
+        "configs",
     )
     # Symlink the config directory inside package to have a cleaner pip install.
     if os.path.exists(destination):
@@ -110,7 +121,10 @@ setup(
         "tensorboard",
         "imagesize",
     ],
-    extras_require={"all": ["shapely", "psutil"], "dev": ["flake8", "isort", "black==19.3b0"]},
+    extras_require={
+        "all": ["shapely", "psutil"],
+        "dev": ["flake8", "isort", "black==19.3b0"],
+    },
     ext_modules=get_extensions(),
     cmdclass={"build_ext": torch.utils.cpp_extension.BuildExtension},
 )
