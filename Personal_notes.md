@@ -10,4 +10,12 @@ python demo/demo.py --config-file configs/COCO-InstanceSegmentation/mask_rcnn_R_
 
 ```
 
-## Run Training Inference Example
+
+```
+python demo/demo.py --config-file configs/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml \
+  --input test_data/input_img/input1.jpg \
+  --output test_data/output_img \
+  --opts MODEL.WEIGHTS detectron2://COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x/137849600/model_final_f10217.pkl
+```
+
+## Run Training Example

@@ -45,6 +45,11 @@ also installs detectron2 with a few simple commands.
 	torch.version.cuda
 	```
 
+	For Cuda 10.0 try:
+	```
+	pip3 install torch==1.3.1+cu100 torchvision==0.4.2+cu100 -f https://download.pytorch.org/whl/torch_stable.html
+	```
+
 3. Install the remaining requirements by running:
 	```
 	pip install opencv-python
@@ -100,3 +105,10 @@ Note: you may need to rebuild detectron2 after reinstalling a different build of
   * Detectron2 is not built with the correct compute compability for the GPU model.
     The compute compability defaults to match the GPU found on the machine during building,
     and can be controlled by `TORCH_CUDA_ARCH_LIST` environment variable during installation.
+
++ `libSM.so.6` not found
+	```
+	sudo apt-get update
+	sudo apt-get install -y libsm6 libxext6 libxrender-dev
+	pip install opencv-python
+	```
