@@ -25,4 +25,4 @@ python tools/train_net.py \
 	SOLVER.IMS_PER_BATCH 2 SOLVER.BASE_LR 0.0025
 ```
 
-Test
+Test again
