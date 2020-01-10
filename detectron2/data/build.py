@@ -428,6 +428,30 @@ def build_dataset(cfg, mapper=None):
     )
     dataset = DatasetFromList(dataset_dicts, copy=False)
 
+    # Bin edges for batching images with similar aspect ratios. If ASPECT_RATIO_GROUPING
+    # is enabled, we define two bins with an edge at height / width = 1.
+    group_bin_edges = [1] if cfg.DATALOADER.ASPECT_RATIO_GROUPING else []
+    aspect_ratios = [float(img["height"]) / float(img["width"]) for img in dataset]
+
+    if mapper is None:
+        mapper = DatasetMapper(cfg, True)
+    dataset = MapDataset(dataset, mapper)
+
+    sampler_name = cfg.DATALOADER.SAMPLER_TRAIN
+    logger = logging.getLogger(__name__)
+    logger.info("Using training sampler {}".format(sampler_name))
+    if sampler_name == "TrainingSampler":
+        sampler = samplers.TrainingSampler(len(dataset))
+    elif sampler_name == "RepeatFactorTrainingSampler":
+        sampler = samplers.RepeatFactorTrainingSampler(
+            dataset_dicts, cfg.DATALOADER.REPEAT_THRESHOLD
+        )
+    else:
+        raise ValueError("Unknown training sampler: {}".format(sampler_name))
+    batch_sampler = build_batch_data_sampler(
+        sampler, images_per_worker, group_bin_edges, aspect_ratios
+    )
+
     return dataset
 
 
