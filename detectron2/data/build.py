@@ -384,7 +384,7 @@ def build_detection_train_loader(cfg, mapper=None):
 
 
 def build_dataset(cfg, mapper=None):
-     """
+    """
     A data loader is created by the following steps:
 
     1. Use the dataset names in config to query :class:`DatasetCatalog`, and obtain a list of dicts.
