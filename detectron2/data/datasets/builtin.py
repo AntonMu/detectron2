@@ -33,8 +33,14 @@ _PREDEFINED_SPLITS_COCO = {}
 _PREDEFINED_SPLITS_COCO["coco"] = {
     "coco_2014_train": ("coco/train2014", "coco/annotations/instances_train2014.json"),
     "coco_2014_val": ("coco/val2014", "coco/annotations/instances_val2014.json"),
-    "coco_2014_minival": ("coco/val2014", "coco/annotations/instances_minival2014.json"),
-    "coco_2014_minival_100": ("coco/val2014", "coco/annotations/instances_minival2014_100.json"),
+    "coco_2014_minival": (
+        "coco/val2014",
+        "coco/annotations/instances_minival2014.json",
+    ),
+    "coco_2014_minival_100": (
+        "coco/val2014",
+        "coco/annotations/instances_minival2014_100.json",
+    ),
     "coco_2014_valminusminival": (
         "coco/val2014",
         "coco/annotations/instances_valminusminival2014.json",
@@ -42,8 +48,14 @@ _PREDEFINED_SPLITS_COCO["coco"] = {
     "coco_2017_train": ("coco/train2017", "coco/annotations/instances_train2017.json"),
     "coco_2017_val": ("coco/val2017", "coco/annotations/instances_val2017.json"),
     "coco_2017_test": ("coco/test2017", "coco/annotations/image_info_test2017.json"),
-    "coco_2017_test-dev": ("coco/test2017", "coco/annotations/image_info_test-dev2017.json"),
-    "coco_2017_val_100": ("coco/val2017", "coco/annotations/instances_val2017_100.json"),
+    "coco_2017_test-dev": (
+        "coco/test2017",
+        "coco/annotations/image_info_test-dev2017.json",
+    ),
+    "coco_2017_val_100": (
+        "coco/val2017",
+        "coco/annotations/instances_val2017_100.json",
+    ),
 }
 
 _PREDEFINED_SPLITS_COCO["coco_person"] = {
@@ -51,7 +63,10 @@ _PREDEFINED_SPLITS_COCO["coco_person"] = {
         "coco/train2014",
         "coco/annotations/person_keypoints_train2014.json",
     ),
-    "keypoints_coco_2014_val": ("coco/val2014", "coco/annotations/person_keypoints_val2014.json"),
+    "keypoints_coco_2014_val": (
+        "coco/val2014",
+        "coco/annotations/person_keypoints_val2014.json",
+    ),
     "keypoints_coco_2014_minival": (
         "coco/val2014",
         "coco/annotations/person_keypoints_minival2014.json",
@@ -68,7 +83,10 @@ _PREDEFINED_SPLITS_COCO["coco_person"] = {
         "coco/train2017",
         "coco/annotations/person_keypoints_train2017.json",
     ),
-    "keypoints_coco_2017_val": ("coco/val2017", "coco/annotations/person_keypoints_val2017.json"),
+    "keypoints_coco_2017_val": (
+        "coco/val2017",
+        "coco/annotations/person_keypoints_val2017.json",
+    ),
     "keypoints_coco_2017_val_100": (
         "coco/val2017",
         "coco/annotations/person_keypoints_val2017_100.json",
@@ -101,7 +119,7 @@ _PREDEFINED_SPLITS_COCO_PANOPTIC = {
 }
 
 
-def register_all_coco(root="datasets"):
+def register_all_coco(root="/datasets"):
     for dataset_name, splits_per_dataset in _PREDEFINED_SPLITS_COCO.items():
         for key, (image_root, json_file) in splits_per_dataset.items():
             # Assume pre-defined datasets live in `./datasets`.
@@ -143,7 +161,7 @@ _PREDEFINED_SPLITS_LVIS = {
 }
 
 
-def register_all_lvis(root="datasets"):
+def register_all_lvis(root="/datasets"):
     for dataset_name, splits_per_dataset in _PREDEFINED_SPLITS_LVIS.items():
         for key, (image_root, json_file) in splits_per_dataset.items():
             # Assume pre-defined datasets live in `./datasets`.
@@ -159,13 +177,22 @@ def register_all_lvis(root="datasets"):
 
 
 _RAW_CITYSCAPES_SPLITS = {
-    "cityscapes_fine_{task}_train": ("cityscapes/leftImg8bit/train", "cityscapes/gtFine/train"),
-    "cityscapes_fine_{task}_val": ("cityscapes/leftImg8bit/val", "cityscapes/gtFine/val"),
-    "cityscapes_fine_{task}_test": ("cityscapes/leftImg8bit/test", "cityscapes/gtFine/test"),
+    "cityscapes_fine_{task}_train": (
+        "cityscapes/leftImg8bit/train",
+        "cityscapes/gtFine/train",
+    ),
+    "cityscapes_fine_{task}_val": (
+        "cityscapes/leftImg8bit/val",
+        "cityscapes/gtFine/val",
+    ),
+    "cityscapes_fine_{task}_test": (
+        "cityscapes/leftImg8bit/test",
+        "cityscapes/gtFine/test",
+    ),
 }
 
 
-def register_all_cityscapes(root="datasets"):
+def register_all_cityscapes(root="/datasets"):
     for key, (image_dir, gt_dir) in _RAW_CITYSCAPES_SPLITS.items():
         meta = _get_builtin_metadata("cityscapes")
         image_dir = os.path.join(root, image_dir)
@@ -192,7 +219,7 @@ def register_all_cityscapes(root="datasets"):
 
 
 # ==== Predefined splits for PASCAL VOC ===========
-def register_all_pascal_voc(root="datasets"):
+def register_all_pascal_voc(root="/datasets"):
     SPLITS = [
         ("voc_2007_trainval", "VOC2007", "trainval"),
         ("voc_2007_train", "VOC2007", "train"),

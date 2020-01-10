@@ -34,7 +34,7 @@ echo "========================================================================"
 echo "Running demo.py ..."
 echo "========================================================================"
 DEMO_BIN="python demo/demo.py"
-COCO_DIR=datasets/coco/val2014
+COCO_DIR=/datasets/coco/val2014
 mkdir -pv $OUTPUT
 
 set -v
