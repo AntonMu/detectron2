@@ -384,7 +384,7 @@ def build_detection_train_loader(cfg, mapper=None):
 
 
 def build_dataset(cfg, mapper=None):
-    """
+     """
     A data loader is created by the following steps:
 
     1. Use the dataset names in config to query :class:`DatasetCatalog`, and obtain a list of dicts.
@@ -451,8 +451,15 @@ def build_dataset(cfg, mapper=None):
     batch_sampler = build_batch_data_sampler(
         sampler, images_per_worker, group_bin_edges, aspect_ratios
     )
-
     return dataset
+    # data_loader = torch.utils.data.DataLoader(
+    #     dataset,
+    #     num_workers=cfg.DATALOADER.NUM_WORKERS,
+    #     batch_sampler=batch_sampler,
+    #     collate_fn=trivial_batch_collator,
+    #     worker_init_fn=worker_init_reset_seed,
+    # )
+    # return data_loader
 
 
 def build_detection_test_loader(cfg, dataset_name, mapper=None):
