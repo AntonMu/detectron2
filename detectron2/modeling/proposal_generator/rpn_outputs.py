@@ -339,9 +339,9 @@ class RPNOutputs(object):
         # Log the number of positive/negative anchors per-image that's used in training
         num_pos_anchors = (gt_objectness_logits == 1).sum().item()
         num_neg_anchors = (gt_objectness_logits == 0).sum().item()
-        storage = get_event_storage()
-        storage.put_scalar("rpn/num_pos_anchors", num_pos_anchors / self.num_images)
-        storage.put_scalar("rpn/num_neg_anchors", num_neg_anchors / self.num_images)
+        # storage = get_event_storage()
+        # storage.put_scalar("rpn/num_pos_anchors", num_pos_anchors / self.num_images)
+        # storage.put_scalar("rpn/num_neg_anchors", num_neg_anchors / self.num_images)
 
         assert gt_objectness_logits.shape[1] == num_anchors_per_image
         # Split to tuple of L tensors, each with shape (N, num_anchors_per_map)
